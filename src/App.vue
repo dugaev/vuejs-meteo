@@ -36,7 +36,7 @@ onMounted(getWeather)
                     @keyup.enter="getWeather"
                     />
                   </div>
-                 <WeatherSummary  v-if="!isError" :weatherInfo="weatherInfo"/>
+                 <WeatherSummary   :weatherInfo="weatherInfo"/>
                  <div v-if="weatherInfo?.message" class="error">
                     <div class="error-title">
                         Oooooops! Something went wrong!
@@ -47,7 +47,7 @@ onMounted(getWeather)
                     </div>
                 </div>
               </section>
-              <section  v-if="!isError" class="section section-right">
+              <section  class="section section-right">
                 <Highlights  :weatherInfo="weatherInfo"/>
               </section> 
             </div>
@@ -66,8 +66,7 @@ onMounted(getWeather)
 .page
   position: relative
   display: flex
-  justify-content: center
-  align-items: center
+ 
   min-height: 100vh
   padding: 20px 0
   background-color: #59585d

@@ -14,7 +14,7 @@ const today = new Date().toLocaleString('en-EN', {weekday: 'short', year: 'numer
 
 
 <template>
- <div class="summary">
+ <div v-if="weatherInfo?.weather" class="summary">
                     <div
                       :style="`background-image: url('./weather-main/${weatherInfo?.weather[0].description}.png');`"
                       class="pic-main"
