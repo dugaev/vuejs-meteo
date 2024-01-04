@@ -77,6 +77,7 @@ onMounted(getWeather)
   width: 100%
   padding: 20px
   background-color: #0e100f
+  opacity: 0.95
   border-radius: 25px
 
 .sections
