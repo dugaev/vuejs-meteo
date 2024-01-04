@@ -28,7 +28,8 @@ onMounted(getWeather)
             <div class="sections">
               <section :class="['section', 'section-left', { 'section-error': isError}]">
                 <div class="info">
-                {{ city }}
+                  <div class="city-name"> {{ city }} </div>
+               
                   <div class="city-inner">
                     <input v-model="city"  
                     type="text" 
@@ -85,6 +86,17 @@ onMounted(getWeather)
   @media (max-width: 767px)
     flex-direction: column
 
+
+.city-name
+  text-align: center
+  margin-bottom: 15px
+  font-weight: bold
+  font-size: 20px
+  border: 1px solid #9594F5
+  border-radius: 15px
+  padding: 5px
+  background: transparent
+
 .section-left
   width: 30%
   padding-right: 10px
@@ -119,7 +131,7 @@ onMounted(getWeather)
     right: 10px
     width: 25px
     height: 25px
-    background: url('./assets/img/search.svg') no-repeat 50% 50%
+    background: url('./assets/img/search.svg') no-repeat 50% 50% 
     background-size: contain
     transform: translateY(50%)
     cursor: pointer
@@ -136,11 +148,10 @@ onMounted(getWeather)
   padding: 16px
   font-family: 'Inter', Arial, sans-serif
   color: $white
-  background-color: rgba(0, 0, 0, 0.75)
+  background-color: rgba(0, 0, 0, 0.35)
   border-radius: 16px
   border: none
   outline: none
-  cursor: pointer
 
 .section-bottom
   width: 50%
@@ -153,7 +164,7 @@ onMounted(getWeather)
   padding-top: 20px
 
   &-title
-    font-size: 18px
+    font-size: 20px
     font-weight: 700
 
   &-message

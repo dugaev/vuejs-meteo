@@ -191,6 +191,9 @@ const sunsetTime = computed(() => {
 
 .title
   padding-bottom: 16px
+  font-size: 20px
+  font-weight: bold
+  text-align: center
 
 .highlight
   width: 32%
