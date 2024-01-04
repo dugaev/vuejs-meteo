@@ -1,2 +1,2 @@
-export const API_KEY = 'f9b05bb789ee99f950c02db1724a9c38'
+export const API_KEY = '28adbe3cf3a3002039d9b29d85ab5f15'
 export const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
