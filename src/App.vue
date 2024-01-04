@@ -66,10 +66,11 @@ onMounted(getWeather)
 .page
   position: relative
   display: flex
- 
+  justify-content: center
+  align-items: center
   min-height: 100vh
   padding: 20px 0
-  background-color: #59585d
+  background-image: url('./../src/assets/img/bg-cold.jpg')
 
 .laptop
   width: 100%
