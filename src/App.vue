@@ -141,7 +141,7 @@ getWeather();
   border-radius: 16px
   border: none
   outline: none
-  cursor: pointer
+  
 
 .section-bottom
   width: 50%
