@@ -1,65 +1,64 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
-import { API_KEY, BASE_URL } from './constants/index.js'
-import WeatherSummary from './components/WeatherSummary.vue'
-import Highlights from './components/Highlights.vue'
-import Coords from './components/Coords.vue'
-import Humidity from './components/Humidity.vue'
-import { capitalizedFirstLetter } from './utils/index.js'
-const city = ref('Chernivtsi')
-const weatherInfo = ref(null)
-const isError = computed (() => weatherInfo.value?.cod !== 200);
+import { ref, onMounted, computed } from "vue";
+import { API_KEY, BASE_URL } from "./constants";
+import { capitalizedFirstLetter } from "./utils";
+import WeatherSummary from "./components/WeatherSummary.vue";
+import Highlights from "./components/Highlights.vue";
+import Coords from "./components/Coords.vue";
+import Humidity from "./components/Humidity.vue";
 
+const city = ref("Chernivtsi");
+const weatherInfo = ref(null);
+const isError = computed(() => weatherInfo.value?.cod !== 200);
 
-function getWeather () {
-  fetch(`${BASE_URL}?q={city.value}&units=metric&appid={${API_KEY}`)
-    .then ((response) => response.json())
-    .then ((data) => weatherInfo.value = data)
+function getWeather() {
+  fetch(`${BASE_URL}?q=${city.value}&units=metric&appid=${API_KEY}`)
+    .then((response) => response.json())
+    .then((data) => (weatherInfo.value = data));
 }
 
-onMounted(getWeather)
+getWeather();
 </script>
 
 <template>
   <div class="page">
-      <main class="main">
-        <div class="container">
-          <div class="laptop">
-            <div class="sections">
-              <section :class="['section', 'section-left', { 'section-error': isError}]">
-                <div class="info">
-                  <div class="city-name"> {{ city }} </div>
-               
-                  <div class="city-inner">
-                    <input v-model="city"  
-                    type="text" 
+    <main class="main">
+      <div class="container">
+        <div class="laptop">
+          <div class="sections">
+            <section
+              :class="['section', 'section-left', { 'section-error': isError }]"
+            >
+              <div class="info">
+                <div class="city-inner">
+                  <input
+                    v-model="city"
+                    type="text"
                     class="search"
                     @keyup.enter="getWeather"
-                    />
-                  </div>
-                 <WeatherSummary   :weatherInfo="weatherInfo"/>
-                 <div v-if="weatherInfo?.message" class="error">
-                    <div class="error-title">
-                        Oooooops! Something went wrong!
-                    </div>
-                    <div class="error-message">
-                        {{ capitalizedFirstLetter (weatherInfo?.message) }}
-                    </div>
-                    </div>
+                  />
                 </div>
-              </section>
-              <section  class="section section-right">
-                <Highlights  :weatherInfo="weatherInfo"/>
-              </section> 
-            </div>
-            <div v-if="!isError" class="sections">
-              <Coords :coord="weatherInfo.coord"/>
-              <Humidity :humidity="weatherInfo.main.humidity"/> 
-            </div>
+                <WeatherSummary v-if="!isError" :weatherInfo="weatherInfo" />
+                <div v-else class="error">
+                  <div class="error-title">Oooops! Something went wrong</div>
+                  <div v-if="weatherInfo?.message" class="error-message">
+                    {{ capitalizeFirstLetter(weatherInfo?.message) }}
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section v-if="!isError" class="section section-right">
+              <Highlights :weatherInfo="weatherInfo" />
+            </section>
+          </div>
+          <div v-if="!isError" class="sections">
+            <Coords :coord="weatherInfo.coord" />
+            <Humidity :humidity="weatherInfo.main.humidity" />
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
+  </div>
 </template>
 
 <style lang="sass" scoped>
@@ -87,17 +86,6 @@ onMounted(getWeather)
   @media (max-width: 767px)
     flex-direction: column
 
-
-.city-name
-  text-align: center
-  margin-bottom: 15px
-  font-weight: bold
-  font-size: 20px
-  border: 1px solid #9594F5
-  border-radius: 15px
-  padding: 5px
-  background: transparent
-
 .section-left
   width: 30%
   padding-right: 10px
@@ -106,7 +94,7 @@ onMounted(getWeather)
     width: 100%
     padding-right: 0
 
-    &.section-error 
+  &.section-error
     min-width: 235px
     width: auto
     padding-right: 0
@@ -132,7 +120,7 @@ onMounted(getWeather)
     right: 10px
     width: 25px
     height: 25px
-    background: url('./assets/img/search.svg') no-repeat 50% 50% 
+    background: url('./assets/img/search.svg') no-repeat 50% 50%
     background-size: contain
     transform: translateY(50%)
     cursor: pointer
@@ -149,10 +137,11 @@ onMounted(getWeather)
   padding: 16px
   font-family: 'Inter', Arial, sans-serif
   color: $white
-  background-color: rgba(0, 0, 0, 0.35)
+  background-color: rgba(0, 0, 0, 0.25)
   border-radius: 16px
   border: none
   outline: none
+  cursor: pointer
 
 .section-bottom
   width: 50%
@@ -161,14 +150,14 @@ onMounted(getWeather)
   @media (max-width: 767px)
     width: 100%
 
-.error 
+.error
   padding-top: 20px
 
   &-title
-    font-size: 20px
+    font-size: 18px
     font-weight: 700
 
   &-message
     padding-top: 10px
-    font-size: 12px
+    font-size: 13px
 </style>
