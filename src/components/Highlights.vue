@@ -55,7 +55,7 @@ const sunsetTime = computed(() => {
               <div class="card-small-text">
                 Learn
                 <a
-                  href="https://www.windy.com/articles/weather-phenomena-what-s-the-difference-between-sustained-winds-and-wind-gusts-10390?satellite,7.787,115.115,5"
+                  href="https://www.windy.com/48.286/25.938?satellite,47.864,25.938,8"
                   target="_blank"
                   >more</a
                 >
