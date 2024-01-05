@@ -201,8 +201,9 @@ const sunsetTime = computed(() => {
     background-size: contain
 
     &--wind
-      background-image: url('/src/assets/img/equalizer (2).png')
-
+      background-image: url('/src/assets/img/wind.webp')
+      background-size: 140px 140px
+      background-position: center
     &--pressure
       background-image: url('/src/assets/img/barometer.png')
 
